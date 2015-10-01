@@ -157,12 +157,12 @@ def create_cobra_model_from_sbml_file(sbml_filename, old_sbml=False, legacy_meta
                     msg = msg % (tmp_metabolite.id, tmp_metabolite.charge, note_charge)
                     warn(msg)
 
-        if "KEGG" in tmp_metabolite.notes:
-            kegg_ids = tmp_metabolite.notes["KEGG"][0]
-            splitted = kegg_ids.split(" ")
-            kegg_ids_set = {s for s in splitted if s.startswith("C")}
-            if kegg_ids_set:
-                tmp_metabolite.kegg_ids = kegg_ids_set
+        # if "KEGG" in tmp_metabolite.notes:
+        #     kegg_ids = tmp_metabolite.notes["KEGG"][0]
+        #     splitted = kegg_ids.split(" ")
+        #     kegg_ids_set = {s for s in splitted if s.startswith("C")}
+        #     if kegg_ids_set:
+        #         tmp_metabolite.kegg_ids = kegg_ids_set
 
         for the_key in tmp_metabolite.notes.keys():
             if the_key.lower() == 'formula':
@@ -302,6 +302,7 @@ def create_cobra_model_from_sbml_file(sbml_filename, old_sbml=False, legacy_meta
         if 'SUBSYSTEM' in reaction_note_dict:
             reaction.subsystem = reaction_note_dict['SUBSYSTEM'][0]   
 
+        reaction.notes = reaction_note_dict
 
 
     #Now, add all of the reactions to the model.
