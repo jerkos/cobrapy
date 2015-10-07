@@ -1,7 +1,7 @@
 from warnings import warn
 
 from .sbml3 import read_sbml_model, write_sbml_model
-from .json import load_json_model, save_json_model, to_json
+from .json import load_json_model, save_json_model, to_json, _from_dict
 
 # These functions have other dependencies
 try:
