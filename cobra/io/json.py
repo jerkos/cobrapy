@@ -55,7 +55,10 @@ def _fix_type(value):
     """convert possible types to str, float, and bool"""
     # Because numpy floats can not be pickled to json
     if isinstance(value, string_types):
-        return value.encode('utf-8')  # str(value)
+        try:
+            return value.encode('utf-8')  # str(value)
+        except Exception:
+            return str(value)
     if isinstance(value, float_):
         return float(value)
     if isinstance(value, bool_):
